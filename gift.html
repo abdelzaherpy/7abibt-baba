@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كل سنة وانتي طيبة يا حبيبه ابوكى 😍</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #c8536a;
+    --deep: #7a1c35;
+    --gold: #d4a843;
+    --cream: #fdf6ee;
+    --blush: #f5dde5;
+    --dark: #1a0a0f;
+    --text: #3a1520;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Tajawal', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ===== AUDIO ===== */
+  #bgAudio { display: none; }
+
+  /* ===== PETALS ===== */
+  .petals-container {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    top: -40px;
+    font-size: 1.2rem;
+    animation: fall linear infinite;
+    opacity: 0.7;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-40px) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 40%, #3d0a1a 0%, #1a0a0f 70%);
+    overflow: hidden;
+    padding: 40px 20px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,83,106,0.18) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
+  }
+
+  .eid-badge {
+    font-family: 'Amiri', serif;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+  .hero-title span { color: var(--rose); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--blush);
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+    margin-bottom: 40px;
+  }
+
+  .hero-img-frame {
+    position: relative;
+    width: clamp(220px, 60vw, 320px);
+    height: clamp(270px, 75vw, 400px);
+    margin: 20px auto;
+    opacity: 0;
+    animation: fadeUp 1.2s 1.2s forwards;
+  }
+  .hero-img-frame::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 2px solid var(--rose);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    animation: borderSpin 8s linear infinite;
+  }
+  .hero-img-frame::after {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%;
+    animation: borderSpin 12s linear infinite reverse;
+  }
+  @keyframes borderSpin {
+    100% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
+  }
+  .hero-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 55% 45% 50% 50% / 50% 55% 45% 50%;
+  }
+
+  .hearts-row {
+    display: flex; gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeUp 1s 1.8s forwards;
+  }
+  .hearts-row span {
+    font-size: 1.5rem;
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+  .hearts-row span:nth-child(2) { animation-delay: 0.3s; }
+  .hearts-row span:nth-child(3) { animation-delay: 0.6s; }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 30px;
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+    animation: bounce 2s ease-in-out infinite;
+    opacity: 0;
+    animation: fadeIn 1s 3s forwards, bounce2 2s 4s ease-in-out infinite;
+  }
+  @keyframes bounce2 {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* ===== SECTION BASE ===== */
+  section {
+    position: relative; z-index: 1;
+    padding: 80px 20px;
+  }
+
+  .section-label {
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 14px;
+    opacity: 0;
+    transition: opacity 0.6s, transform 0.6s;
+    transform: translateY(20px);
+  }
+  .section-title {
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--cream);
+    margin-bottom: 50px;
+    opacity: 0;
+    transition: opacity 0.8s 0.2s, transform 0.8s 0.2s;
+    transform: translateY(20px);
+  }
+  .section-title span { color: var(--rose); }
+
+  section.visible .section-label,
+  section.visible .section-title {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ===== LETTER ===== */
+  #letter {
+    background: linear-gradient(180deg, #1a0a0f 0%, #200d14 100%);
+  }
+  .letter-card {
+    max-width: 680px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200,83,106,0.2);
+    border-radius: 20px;
+    padding: clamp(30px, 6vw, 60px);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s 0.4s, transform 1s 0.4s;
+  }
+  .letter-card::before {
+    content: '❝';
+    position: absolute; top: 20px; right: 30px;
+    font-size: 5rem; color: rgba(200,83,106,0.08);
+    font-family: Georgia, serif; line-height: 1;
+  }
+  section.visible .letter-card { opacity: 1; transform: translateY(0); }
+
+  .letter-greeting {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--rose);
+    margin-bottom: 20px;
+  }
+  .letter-body {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    line-height: 2.2;
+    color: rgba(253,246,238,0.9);
+    font-weight: 300;
+  }
+  .letter-sig {
+    margin-top: 30px;
+    font-family: 'Amiri', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    text-align: left;
+  }
+
+  /* ===== PHOTOS ===== */
+  #photos {
+    background: linear-gradient(180deg, #200d14 0%, #150810 100%);
+  }
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .photo-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .photo-item:nth-child(1) { transition-delay: 0.1s; }
+  .photo-item:nth-child(2) { transition-delay: 0.2s; }
+  .photo-item:nth-child(3) { transition-delay: 0.3s; }
+  .photo-item:nth-child(4) { transition-delay: 0.4s; }
+  .photo-item:nth-child(5) { transition-delay: 0.5s; }
+  section.visible .photo-item { opacity: 1; transform: scale(1); }
+
+  .photo-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .photo-item:hover img { transform: scale(1.08); }
+  .photo-item::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(122,28,53,0.7) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .photo-item:hover::after { opacity: 1; }
+
+  .photo-caption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: rgba(253,246,238,0.75);
+    line-height: 1.7;
+    text-align: center;
+    font-family: 'Tajawal', sans-serif;
+    padding: 0 4px;
+  }
+
+  /* ===== VIDEOS ===== */
+  #videos {
+    background: linear-gradient(180deg, #150810 0%, #1a0a0f 100%);
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .video-item {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(200,83,106,0.25);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s, transform 0.7s;
+    background: rgba(0,0,0,0.4);
+  }
+  .video-item:nth-child(1) { transition-delay: 0.1s; }
+  .video-item:nth-child(2) { transition-delay: 0.25s; }
+  .video-item:nth-child(3) { transition-delay: 0.4s; }
+  section.visible .video-item { opacity: 1; transform: translateY(0); }
+
+  .video-item video {
+    width: 100%;
+    display: block;
+    max-height: 340px;
+    object-fit: cover;
+  }
+  .video-label {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-family: 'Amiri', serif;
+    text-align: center;
+  }
+
+  /* ===== MONEY GIFT ===== */
+  #money-gift {
+    background: linear-gradient(180deg, #1a0a0f 0%, #0d0508 100%);
+    text-align: center;
+  }
+  .money-envelope {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s 0.3s, transform 0.8s 0.3s;
+  }
+  section.visible .money-envelope { opacity: 1; transform: scale(1); }
+
+  .envelope-outer {
+    width: clamp(220px, 60vw, 300px);
+    background: linear-gradient(135deg, #c8536a, #7a1c35);
+    border-radius: 20px;
+    padding: 30px 20px 20px;
+    box-shadow: 0 20px 60px rgba(200,83,106,0.4);
+    transition: transform 0.3s;
+    margin: 0 auto;
+  }
+  .envelope-outer:hover { transform: scale(1.04) rotate(-1deg); }
+
+  .envelope-icon { font-size: 4rem; margin-bottom: 10px; }
+  .envelope-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .envelope-hint {
+    font-size: 0.85rem;
+    color: rgba(253,246,238,0.7);
+    margin-bottom: 16px;
+  }
+
+  /* modal */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-card {
+    background: linear-gradient(135deg, #2a0d18, #3d0a1a);
+    border: 1px solid var(--rose);
+    border-radius: 24px;
+    padding: 40px 30px;
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative;
+  }
+  @keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-close {
+    position: absolute; top: 16px; left: 16px;
+    background: none; border: none;
+    color: var(--cream); font-size: 1.4rem;
+    cursor: pointer; opacity: 0.6;
+  }
+  .modal-close:hover { opacity: 1; }
+  .money-amount {
+    font-family: 'Amiri', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+    margin: 10px 0;
+  }
+  .money-currency {
+    font-size: 1.2rem;
+    color: var(--rose);
+    margin-bottom: 16px;
+  }
+  .money-note {
+    font-size: 1rem;
+    color: rgba(253,246,238,0.8);
+    line-height: 1.8;
+  }
+  .confetti-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 16px;
+    animation: spin 1s ease-in-out;
+  }
+  @keyframes spin {
+    from { transform: rotate(-20deg) scale(0); }
+    to { transform: rotate(0) scale(1); }
+  }
+
+  /* ===== FINAL ===== */
+  #final {
+    background: linear-gradient(180deg, #0d0508 0%, #1a0a0f 100%);
+    text-align: center;
+    padding: 100px 20px;
+  }
+  .final-heart {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 20px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  .final-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .final-sub {
+    font-size: 1rem;
+    color: rgba(253,246,238,0.5);
+  }
+
+  /* ===== MUSIC TOGGLE ===== */
+  #musicBtn {
+    position: fixed;
+    bottom: 24px; left: 24px;
+    z-index: 99;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: var(--rose);
+    border: none; cursor: pointer;
+    font-size: 1.3rem;
+    color: white;
+    box-shadow: 0 4px 20px rgba(200,83,106,0.5);
+    transition: transform 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #musicBtn:hover { transform: scale(1.1); }
+  #musicBtn.playing { animation: musicPulse 1.5s ease-in-out infinite; }
+  @keyframes musicPulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(200,83,106,0.5); }
+    50% { box-shadow: 0 4px 35px rgba(200,83,106,0.9); }
+  }
+
+  /* ===== LIGHTBOX ===== */
+  #lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 200;
+    align-items: center; justify-content: center;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw; max-height: 90vh;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+  #lightbox-close {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 2rem; color: white; cursor: pointer;
+    background: none; border: none;
+  }
+
+  /* divider */
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    margin: 0 auto 30px;
+  }
+</style>
+</head>
+<body>
+
+<audio id="bgAudio" src="maloka.mp3" loop></audio>
+
+<!-- Petals -->
+<div class="petals-container" id="petals"></div>
+
+<!-- Music Button -->
+<button id="musicBtn" onclick="toggleMusic()" title="تشغيل الموسيقى">🎵</button>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="eid-badge">❤️ كل عيد وانتى عيدى ❤️</div>
+  <h1 class="hero-title">كل سنة وانتي طيبة<br><span>يا نونتى</span> 💕</h1>
+  <p class="hero-sub">من بابا.. بكل الحب</p>
+  <div class="hero-img-frame">
+    <img src="photo3.jpg" alt="💕الوزه و البطه">
+  </div>
+  <div class="hearts-row">
+    <span>😙</span><span>💕</span><span>😙</span>
+  </div>
+  <div class="scroll-hint">↓ انزلى لتحت مش هنفسر</div>
+</section>
+
+<!-- LETTER -->
+<section id="letter">
+  <p class="section-label">رسالة من القلب</p>
+  <h2 class="section-title">يا <span>حبيبة بابا</span> 💌</h2>
+  <div class="letter-card">
+    <p class="letter-greeting">💕يا وزتي يا عيدى ودنيتى،</p>
+    <p class="letter-body">
+      طبعا ده مش أول عيد يعدي علينا وإحنا سوا، ولا هو آخر عيد. وبدعي من ربنا كل مرة إن العيد الجاي هو العيد اللي نقضيه سوا.
+      <br><br>
+      حبك كان اختيار، وكان أحسن اختيار اخترته في حياتي. كنتِ دايما في ضهري، سانده وبتحبيني من كل قلبك وبتديني كل اللي عندك من طاقة وحنية وحب. عمرك ما بخلتِ بحاجة من قلبك عليا.
+      <br><br>
+      دايما بحس حبك طالع من بنت لأبوها، أو من أم لابنها، اللي هو أنضف أنواع الحب.
+      <br><br>
+      بدعي ربنا يحفظك ليا، وفي يوم زي ده يغفرلنا أي حاجة أغضبته، ويرزقنا بداية جديدة حلال نقدر نعمل فيها ما بدالنا وإحنا مبسوطين مش شايلين هم، وهو يبقى راضي ومبسوط عننا.
+      <br><br>
+      حبيتك في العيد وقبل العيد وهحبك بعد العيد وكل عيد، عشان إنتِ عيدي 💕
+      <br><br>
+      فرحتي أجسدت فيكِ كل سنة وإنتِ طيبة يا حبيبة أبوكِ.
+    </p>
+    <p class="letter-sig">— بابا ❤️</p>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <p class="section-label">ذكرياتنا</p>
+  <h2 class="section-title">لحظات <span>ما بتتنسيش</span> 📸</h2>
+  <div class="photos-grid">
+    <div style="display:flex;flex-direction:column;">
+      <div class="photo-item" onclick="openLightbox('photo1.jpg')">
+        <img src="photo1.jpg" alt="ذكرى">
+      </div>
+      <p class="photo-caption">عمرك منستيني حتى في عيد ميلادي.. دايما ضحكتي معاكي من قلبي ❤️</p>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="photo-item" onclick="openLightbox('photo2.jpg')">
+        <img src="photo2.jpg" alt="ذكرى">
+      </div>
+      <p class="photo-caption">أنا شخصياً مش عارف الماتشينج ده طلع حلو كده ازاي 😂❤️</p>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="photo-item" onclick="openLightbox('photo3.jpg')">
+        <img src="photo3.jpg" alt="ذكرى">
+      </div>
+      <p class="photo-caption">صورتنا المستقبلية.. عقبال مفرح بيكي بفستان خطوبتنا الحقيقي وانتي في إيدي ❤️</p>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="photo-item" onclick="openLightbox('photo4.jpg')">
+        <img src="photo4.jpg" alt="ذكرى">
+      </div>
+      <p class="photo-caption">الحضن ده كنت محتاجه أوي.. ولقيتك ما تأخرتيش عليا فيه.. عقبال الحقيقي ❤️</p>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="photo-item" onclick="openLightbox('photo5.jpg')">
+        <img src="photo5.jpg" alt="ذكرى">
+      </div>
+      <p class="photo-caption">الـ eye contact الوحيد اللي عرفنا نحتفظ بيه.. من كل مرة كنت ببص في عينك اللي بتسحرني دي ❤️</p>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <p class="section-label">فيديوهاتنا</p>
+  <h2 class="section-title">أجمل <span>اللحظات</span> 🎬</h2>
+  <div class="videos-grid">
+    <div class="video-item">
+      <video controls muted playsinline preload="metadata">
+        <source src="video1.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">هتعملي أيه ويا حمادة بقا ❤️</div>
+    </div>
+    <div class="video-item">
+      <video controls muted playsinline preload="metadata">
+        <source src="video2.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">ذكرتنا اللي عمري ما نساها.. دايما بتفرج عليها وأفتكر قد إيه كنا خلاص أخدنا على بعض وحياتنا جميلة ❤️</div>
+    </div>
+    <div class="video-item">
+      <video controls muted playsinline preload="metadata">
+        <source src="video3.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">✨ حبيبه بابا عمرها متفكر ازاى ترضى راجل</div>
+    </div>
+  </div>
+</section>
+
+<!-- MONEY GIFT -->
+<section id="money-gift">
+  <p class="section-label">هدية العيد</p>
+  <h2 class="section-title">فيه <span>مفاجأة</span> كمان 🎁</h2>
+  <div class="money-envelope" onclick="openMoneyModal()">
+    <div class="envelope-outer">
+      <div class="envelope-icon">💌</div>
+      <div class="envelope-title">عيدية من بابا لنونته روح قلبه</div>
+      <div class="envelope-hint">اضغطى عشان تفتحى الظرف ✨</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="final">
+  <span class="final-heart">❤️</span>
+  <h2 class="final-text">إنتِ عيدي يا ملك</h2>
+  <p class="final-sub">بحبك من قبل العيد وبعد العيد وكل عيد 🌹</p>
+  <br><br>
+  <p style="color: var(--gold); font-family: 'Amiri', serif; font-size: 1.1rem;">— بابا بكل حب 💕</p>
+</section>
+
+<!-- Money Modal -->
+<div class="modal-overlay" id="moneyModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeMoneyModal()">✕</button>
+    <span class="confetti-emoji">🎉</span>
+    <div class="money-amount">200</div>
+    <div class="money-currency">جنيه عيدية 💸</div>
+    <p class="money-note">عيدية من بابا بكل الحب ❤️<br>كل سنة وانتي طيبة يا حبيبة أبوكي</p>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // ===== PETALS =====
+  const petalsContainer = document.getElementById('petals');
+  const petalChars = ['🌸','🌺','🌹','💮','✿','❀'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = petalChars[Math.floor(Math.random() * petalChars.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (6 + Math.random() * 8) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
+    petalsContainer.appendChild(p);
+  }
+
+  // ===== MUSIC =====
+  const audio = document.getElementById('bgAudio');
+  const musicBtn = document.getElementById('musicBtn');
+  let playing = false;
+
+  function toggleMusic() {
+    if (!playing) {
+      audio.play().then(() => {
+        playing = true;
+        musicBtn.textContent = '🎶';
+        musicBtn.classList.add('playing');
+      }).catch(() => {});
+    } else {
+      audio.pause();
+      playing = false;
+      musicBtn.textContent = '🎵';
+      musicBtn.classList.remove('playing');
+    }
+  }
+
+  // autoplay on first interaction
+  document.addEventListener('click', function autoplay() {
+    if (!playing) {
+      audio.play().then(() => {
+        playing = true;
+        musicBtn.textContent = '🎶';
+        musicBtn.classList.add('playing');
+      }).catch(() => {});
+    }
+    document.removeEventListener('click', autoplay);
+  }, { once: true });
+
+  // ===== SCROLL ANIMATIONS =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+  // ===== MONEY MODAL =====
+  function openMoneyModal() {
+    document.getElementById('moneyModal').classList.add('open');
+    launchConfetti();
+  }
+  function closeMoneyModal() {
+    document.getElementById('moneyModal').classList.remove('open');
+  }
+  document.getElementById('moneyModal').addEventListener('click', function(e) {
+    if (e.target === this) closeMoneyModal();
+  });
+
+  function launchConfetti() {
+    const emojis = ['🎊','🎉','🌹','💕','✨','🌸'];
+    for (let i = 0; i < 20; i++) {
+      const el = document.createElement('div');
+      el.style.cssText = `
+        position:fixed; font-size:1.5rem; pointer-events:none; z-index:999;
+        left:${20 + Math.random()*60}vw; top:${20 + Math.random()*40}vh;
+        animation: confettiFall 2s ease-out forwards;
+        animation-delay: ${Math.random()*0.5}s;
+      `;
+      el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 2500);
+    }
+  }
+
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes confettiFall {
+      0% { opacity:1; transform:translateY(0) rotate(0); }
+      100% { opacity:0; transform:translateY(200px) rotate(720deg); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ===== LIGHTBOX =====
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+</script>
+</body>
+</html>
